@@ -118,6 +118,7 @@ h1 {
     color: #f7db0e;
 }
 
+/* Modal code from https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
