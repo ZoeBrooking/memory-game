@@ -17,8 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #ffffff url('../img/leaves-pattern.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Fira Sans', sans-serif;
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
 }
 
@@ -40,7 +40,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #6701cc 0%, #7ea4cd 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -67,7 +67,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #7ea4cd;
     cursor: default;
 }
 
@@ -114,8 +114,8 @@ h1 {
     padding: 0 0 0 25px;
 }
 
-#one {
-    display: initial;
+.fa-star {
+    color: #f7db0e;
 }
 
 /* The Modal (background) */
@@ -139,6 +139,10 @@ h1 {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#congrats-text {
+    text-align: center;
 }
 
 /* The Close Button */
