@@ -15,6 +15,7 @@
 - jQuery library v 3.3.1
 - Font Awesome v 5.3.1
 
-<h3>References</h3>
+<h3>References:</h3>
+
 - Shuffle function - http://stackoverflow.com/a/2450976
 - Modal code from https://www.w3schools.com/howto/howto_css_modals.asp
