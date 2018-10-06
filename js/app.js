@@ -174,7 +174,7 @@ to close the window.
 */
 function popUpModal(){
 	$('.modal').css('display', 'block');
-	$('#congrats-text').text('Congratulations! You have completed the game in ' + time.html() + ' with ' + star + '.' + ' Click on the replay button to play again.');
+	$('#congrats-text').text('Congratulations! You have completed the game in ' + time.html() + ' with ' + star + '.' + ' Click on the button to play again.');
 	$('.modal-content').on('click', 'span', function () {
 		$('.modal').css('display', 'none');
 	});
@@ -183,6 +183,9 @@ function popUpModal(){
 //Refreshes the page to restart the game when the replay button is clicked.
 function restartGame() {
 	$('.container').on('click', ('.restart'), function() {
+		location.reload();
+	});
+	$('.modal-content').on('click', ('.play-again'), function() {
 		location.reload();
 	})
 }
@@ -206,6 +209,15 @@ function starRating() {
 		$('#three').css('display', 'none');
 		star = '0 stars';
 	}
+}
+
+function resetStarRating() {
+	$('.stars .fas').css('display', 'inline');
+}
+
+function resetMatchedCards() {
+	matchedCards.length = 0;
+	$('.deck li').toggleClass('open show match');
 }
 
 //Call functions.
