@@ -1,24 +1,20 @@
-/*
- * Create a list that holds all of your cards
- */
 
-let cards = [];
-let symbols = ['fas fa-crow',
-	'fas fa-crow',
-	'fas fa-dove',
-	'fas fa-dove',
-	'fas fa-bolt',
-	'fas fa-bolt',
-	'fas fa-feather',
-	'fas fa-feather',
-	'fas fa-leaf',
-	'fas fa-leaf',
-	'fas fa-fish',
-	'fas fa-fish',
-	'fas fa-frog',
-	'fas fa-frog',
-	'fas fa-kiwi-bird',
-	'fas fa-kiwi-bird'];
+let symbols = ['<i class="fas fa-crow"></i>',
+	'<i class="fas fa-crow"></i>',
+	'<i class="fas fa-dove"></i>',
+	'<i class="fas fa-dove"></i>',
+	'<i class="fas fa-bolt"></i>',
+	'<i class="fas fa-bolt"></i>',
+	'<i class="fas fa-feather"></i>',
+	'<i class="fas fa-feather"></i>',
+	'<i class="fas fa-leaf"></i>',
+	'<i class="fas fa-leaf"></i>',
+	'<i class="fas fa-fish"></i>',
+	'<i class="fas fa-fish"></i>',
+	'<i class="fas fa-frog"></i>',
+	'<i class="fas fa-frog"></i>',
+	'<i class="fas fa-kiwi-bird"></i>',
+	'<i class="fas fa-kiwi-bird"></i>'];
 let openCards = [];
 let matchedCards = [];
 let targetCard;
@@ -43,20 +39,33 @@ function shuffle(array) {
 }
 
 /*
-1. Behaviour: Goes through the card deck, finds each symbol and replaces them with those listed in the 'symbols' array.
-These are added to the cards array to create a new deck. Shuffle function above then shuffles the cards in the 'symbols' array (function called at end of document).
-2. Inputs: Each card's current symbol. 'Symbols' array. Symbol index.
-3. Outputs: 'Cards' array.
+1. Behaviour: Generates 16 cards, adds 'card' class for styling, and 'animated' so that the cards can be animated. 
+Adds a symbol from the shuffled symbol array (shuffled by function above).
+2. Inputs: Card index. CardList index.'Symbols' array. Symbol index.
+3. Outputs: 16 cards with symbols.
 */
 let symbolIndex = 0;
 function createCard() {
-	$('.deck').find('i').each(function (){
-		$(this).removeClass();
-		$(this).addClass(symbols[symbolIndex]);
-		cards.push($(this));
-		symbolIndex++;
-	});
+	for (let cardIndex = 0; cardIndex < 16; cardIndex++) {
+		const cardDeck = document.querySelector('ul.deck');
+		const addListItem = document.createElement('li');
+		cardDeck.appendChild(addListItem);
+		addListItem.classList.add('card');
+	}
+	addSymbol();
 }
+
+function addSymbol() {
+	const cardsList = document.querySelectorAll('.card');
+	const cardsListArray = Array.from(cardsList);
+	for (let cardsListIndex = 0; cardsListIndex < 16; cardsListIndex++) {
+		if (symbolIndex < 16) {
+			cardsListArray[cardsListIndex].innerHTML = symbols[symbolIndex];
+			symbolIndex++;
+		}
+	}
+}
+
 
 /*
 1. Behaviour: Event listener which listens for a click on the card and toggles the class to show the other side of the card.
@@ -74,6 +83,7 @@ let moveCount = 0;
 function playGame() {
 	$('.deck').on('click', '.card', function(){
 		targetCard = $(this);
+		targetCard.addClass('bounceIn');
 		moveCount++;
 		moveCounter();
 		if (cardCount < 2 && !targetCard.hasClass('open show')) {
@@ -176,17 +186,23 @@ function popUpModal(){
 	$('.modal').css('display', 'block');
 	$('#congrats-text').text('Congratulations! You have completed the game in ' + time.html() + ' with ' + star + '.' + ' Click on the button to play again.');
 	$('.modal-content').on('click', 'span', function () {
-		$('.modal').css('display', 'none');
+		closeModal();
 	});
+}
+
+function closeModal() {
+	$('.modal').css('display', 'none');
+	
 }
 
 //Refreshes the page to restart the game when the replay button is clicked.
 function restartGame() {
 	$('.container').on('click', ('.restart'), function() {
-		location.reload();
+		reset();
 	});
 	$('.modal-content').on('click', ('.play-again'), function() {
-		location.reload();
+		reset();
+		closeModal();
 	})
 }
 
@@ -211,6 +227,23 @@ function starRating() {
 	}
 }
 
+function reset() {
+	stopTimer();
+	symbolIndex = 0;
+	cardIndex = 0;
+	cardsListIndex = 0
+	resetStarRating();
+	resetMatchedCards();
+	resetMoves();
+	resetCards();
+	shuffle(symbols);
+	addSymbol();
+	hours = 0;
+	minutes = 0;
+	seconds = 0;
+	startTimer();
+}
+
 function resetStarRating() {
 	$('.stars .fas').css('display', 'inline');
 }
@@ -219,6 +252,20 @@ function resetMatchedCards() {
 	matchedCards.length = 0;
 	$('.deck li').toggleClass('open show match');
 }
+
+function resetMoves() {
+	moveCount = 0;
+	$('.moves').text(moveCount + " Moves");
+}
+
+function resetCards() {
+	let cards = $('.deck').find('.card');
+	const cardArray = Array.from(cards);
+	cardArray.forEach(function(card) {
+		card.className = 'card';
+	})
+}
+
 
 //Call functions.
 shuffle(symbols);

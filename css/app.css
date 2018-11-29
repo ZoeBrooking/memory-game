@@ -71,6 +71,7 @@ h1 {
     background: #7ea4cd;
     cursor: default;
     pointer-events: none;
+    animation-name: flipInY;
 }
 
 .deck .card.show {
@@ -82,6 +83,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation-name: bounce;
 }
 
 /*

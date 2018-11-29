@@ -14,6 +14,7 @@
 
 - jQuery library v 3.3.1
 - Font Awesome v 5.3.1
+- Animate.css v 3.7.0
 
 <h3>References:</h3>
 
