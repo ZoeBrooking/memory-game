@@ -4,7 +4,7 @@
 
 <h3>About the game:</h3>
 
-1. Clone the repository or visit the following site -  https://zoebrooking.github.io/memory-game/
+1. Clone the repository and run index.html or visit the following site -  https://zoebrooking.github.io/memory-game/
 2. The timer will start as soon as the page is loaded.
 3. Two cards should be clicked at a time - if the symbols match they will stay open, if not both cards with turn back over.
 4. The game ends when all cards are matched.
